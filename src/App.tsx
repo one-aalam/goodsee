@@ -5,6 +5,7 @@ import './App.css';
 import { Header } from './components/Header';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
+import { Switch } from './components/Switch';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         Click Me!
         </Button>
       <Input></Input>
+      <Switch/>
       <header className="App-header">
         Anything goes here...
         <img src={logo} className="App-logo" alt="logo" />
