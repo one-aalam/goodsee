@@ -25,8 +25,8 @@ export interface ITMDBDiscovery {
 }
 
 export const useMovieDetail = (id: number ): IFetchResponse => useFetch(`${BASE_URI}/movie/${id}?api_key=${API_KEY}`, {});
-export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=${API_KEY}`, {});
-
+export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_date.gte=2019-09-15&api_key=${API_KEY}`, {});
+// &primary_release_date.lte=2014-10-22
 // What movies are in theatres?
 
 // URL: /discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22

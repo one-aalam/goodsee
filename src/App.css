@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: black;
+  min-height: 100vh;
+  /* background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%); */
 }
 
 .App-logo {
@@ -14,18 +17,30 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #4a5568;
+  /* background:
+  radial-gradient(circle at 100% 50%, transparent 20%, #4a5568 21%,
+  #4a5568 34%, transparent 35%, transparent),
+  radial-gradient(circle at 0% 50%, transparent 20%, #4a5568 21%, #4a5568 34%, transparent 35%, transparent) 0 -50px;
+background-color: #2d3748;
+background-size: 75px 100px; */
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.App-header__title {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#eee, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @keyframes App-logo-spin {

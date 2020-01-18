@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components';
 import { ITMDBMovie, POSTER_PATH } from '../hooks/tmdb';
 
 type MovieCardProps = {
@@ -7,8 +8,12 @@ type MovieCardProps = {
 
 export const MovieCard :React.FC<MovieCardProps> = ({ movie, children }) => {
     return (
-        <div className="MovieCard">
+        <StyledMovieCard>
            <img alt={movie.title} src={`${POSTER_PATH}${movie.poster_path}`} />
-        </div>
+        </StyledMovieCard>
     )
 }
+
+const StyledMovieCard = styled.div`
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+`

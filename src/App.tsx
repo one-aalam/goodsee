@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <GlobalContext.Provider value={initialValues}>
     <div className="App">
-      <Header title="anything ..." />
+      <Header title="GOODSEE" />
       <MovieCardList/>
     </div>
     </GlobalContext.Provider>

@@ -7,8 +7,8 @@ type HeaderProps = {
 }
 
 export const Header = ({ title , isActive = true }: HeaderProps) => (
-    <div className="Header">
-        <h1 className="Header__title">
+    <div className="App-header">
+        <h1 className="App-header__title">
             {title}
         </h1>
     </div>
