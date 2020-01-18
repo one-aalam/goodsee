@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { GlobalContext, initialValues } from './contexts/GlobalContext';
+
 import { Header } from './components/Header';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
@@ -9,6 +11,7 @@ import { Switch } from './components/Switch';
 
 const App: React.FC = () => {
   return (
+    <GlobalContext.Provider value={initialValues}>
     <div className="App">
       <Header title="anything ..." />
       <Button onClick={() => console.log('hi')}>
@@ -32,6 +35,7 @@ const App: React.FC = () => {
         </a>
       </header>
     </div>
+    </GlobalContext.Provider>
   );
 }
 
