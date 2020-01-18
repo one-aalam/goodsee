@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useContext } from 'react'
+import React, { useRef, useReducer } from 'react'
 import { useClickOutside } from '../hooks/useClickOutside';
 
 enum SwitchActionsEnum {
