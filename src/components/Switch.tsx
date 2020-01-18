@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react'
+import React, { useRef, useReducer } from 'react'
+import { useClickOutside } from '../hooks/useClickOutside';
 
 enum SwitchActionsEnum {
     'ONE' = 'one',
@@ -31,9 +32,14 @@ function reducerFn(action: SwitchAction, state: any) {
 
 export const Switch = () => {
     const [ state, dispatch ] = useReducer(reducerFn, initialState);
+    const ref = useRef<HTMLDivElement>(null!)
+
+    useClickOutside(ref, (e) => {
+        console.log('clicked outside');
+    });
 
     return (
-        <div>
+        <div ref={ref}>
             {state && state.enabled && 'enabled'}
             <button
                 onClick={ e => dispatch({type: SwitchActionsEnum.ONE}) }
