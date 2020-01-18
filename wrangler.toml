@@ -1,0 +1,8 @@
+name = "goodsee"
+type = "webpack"
+account_id = "ab929d22cb57526e1a30dde078001fee"
+workers_dev = true
+
+[site]
+bucket = './build'
+entry-point = "workers-site"

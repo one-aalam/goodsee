@@ -3,11 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 
 import { Header } from './components/Header';
+import { Button } from './components/Button';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Header title="anything ..." />
+      <Button onClick={() => console.log('hi')}>
+        Click Me!
+        </Button>
       <header className="App-header">
         Anything goes here...
         <img src={logo} className="App-logo" alt="logo" />
