@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 
+export interface IFetchResponse {
+    error: null;
+    response: any;
+    loading: boolean;
+}
 
 export const useFetch = (url: string, options: any) => {
-    const [ response, setResponse ] = useState(null!);
+    const [ response, setResponse ] = useState(null);
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(true);
 
