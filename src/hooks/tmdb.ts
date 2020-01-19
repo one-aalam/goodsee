@@ -2,7 +2,11 @@ import { TMDB_API_KEY as API_KEY } from '../secrets';
 import { useFetch, IFetchResponse } from './useFetch';
 
 export const BASE_URI = 'https://api.themoviedb.org/3';
-export const POSTER_PATH = 'https://image.tmdb.org/t/p/w154';
+export const POSTER_PATH = 'https://image.tmdb.org/t/p/w185'; //  w92, w154, w185, w342, w500, w780, original
+export const BACKDROP_PATH = 'https://image.tmdb.org/t/p/w1280'; // w300, w780, w1280, original
+// logo_sizes: w45, w92, w154, w185, w300, w500, original
+// profile_sizes: w45, w185, h632, original
+// still_sizes: w92, w185, w300, original
 
 export interface ITMDBMovie {
     id: number;
@@ -14,9 +18,49 @@ export interface ITMDBMovie {
     vote_count: number;
     poster_path: string;
     backdrop_path: string;
+    genre_ids: number[];
+    original_language: string;
+    original_title: string;
+    adult: boolean;
+    video: boolean;
 }
-// {"popularity":27.41,"vote_count":3999,"video":false,"poster_path":"/4oy4e0DP6LRwRszfx8NY8EYBj8V.jpg","id":49017,"adult":false,"backdrop_path":"/gy5ItoprIPOT7Z1c2YhNhart39l.jpg","original_language":"en","original_title":"Dracula Untold","genre_ids":[28,18,14,27,10752],"title":"Dracula Untold","vote_average":6.3,"overview":"Vlad Tepes is a great hero, but when he learns the Sultan is preparing for battle and needs to form an army of 1,000 boys, he vows to find a way to protect his family. Vlad turns to dark forces in order to get the power to destroy his enemies and agrees to go from hero to monster as he's turned into the mythological vampire, Dracula.","release_date":"2014-10-01"}
 
+export interface ITMDBMovieGenre {
+    id: number;
+    name: string;
+}
+
+export interface ITMDBMovieLanguage {
+    iso_639_1: string;
+    name: string;
+}
+
+export interface ITMDBMovieProductionCountry {
+    iso_3166_1: string;
+    name: string;
+}
+
+export interface ITMDBMovieProductionCompany {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+}
+
+export interface ITMDBMovieDetail extends ITMDBMovie {
+    imdb_id: string;
+    runtime: number;
+    status: string;
+    tagline: string;
+    homepage: string;
+    belongs_to_collection: number;
+    budget: number;
+    revenue: number;
+    genres: ITMDBMovieGenre[];
+    production_companies: ITMDBMovieProductionCompany[];
+    production_countries: ITMDBMovieProductionCountry[];
+    spoken_languages: ITMDBMovieLanguage[];
+}
 export interface ITMDBDiscovery {
     page: number;
     total_pages: number;
@@ -24,8 +68,13 @@ export interface ITMDBDiscovery {
     results: ITMDBMovie[]
 }
 
-export const useMovieDetail = (id: number ): IFetchResponse => useFetch(`${BASE_URI}/movie/${id}?api_key=${API_KEY}`, {});
+export const useMovieDetail = (id?: string): IFetchResponse => useFetch(`${BASE_URI}/movie/${id}?api_key=${API_KEY}`, {});
 export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_date.gte=2019-09-15&api_key=${API_KEY}`, {});
+
+
+
+
+
 // &primary_release_date.lte=2014-10-22
 // What movies are in theatres?
 
