@@ -83,7 +83,9 @@ const requiredQueryParams: queryParams = {
     api_key: API_KEY
 }
 
+// https://www.themoviedb.org/documentation/api
 export const useMovieDetail = (id?: string): IFetchResponse => useFetch(`${BASE_URI}/movie/${id}?api_key=${API_KEY}`, {});
+// https://developers.themoviedb.org/3/discover/movie-discover
 export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_year=2020&api_key=${API_KEY}`, {});
 export const useMovieDiscover = (params: queryParams = defaultQueryParams): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?${stringify({ ...requiredQueryParams, ...params })}`, {});
 

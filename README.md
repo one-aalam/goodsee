@@ -46,3 +46,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Use:
 https://codesandbox.io/s/github/zlatanpham/histogram-slider/tree/master/?from-embed
 https://github.com/samhogg/histoslider
+
+API
+https://www.themoviedb.org/documentation/api
