@@ -5,13 +5,13 @@ import { MovieCard } from './MovieCard';
 
 
 export const MovieCardList = () => {
-    const { error, loading, response } = useMoviePopular(333);
+    const { error, loading, response } = useMoviePopular();
     if (loading) {
         return <p>Loading...</p>;
     }
 
     if (error) {
-    return <p>Error: {error}</p>;
+    return <p>Error:</p>;
     }
 
     return (
@@ -23,8 +23,9 @@ export const MovieCardList = () => {
 
 const MovieGrid = styled.div`
     display: grid;
-    padding: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(154px, 1fr));
-    grid-row-gap: 1rem;
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    grid-row-gap: 1.2rem;
+    grid-column-gap: .8rem;
     grid-auto-flow: row;
 `;
