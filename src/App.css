@@ -1,6 +1,9 @@
+body {
+  background-color: #e2e8f0;
+}
+
 .App {
   text-align: center;
-  background-color: black;
   min-height: 100vh;
   /* background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%); */
 }
@@ -38,9 +41,9 @@ background-size: 75px 100px; */
 
 .App-header__title {
   font-size: 72px;
-  background: -webkit-linear-gradient(#eee, yellow);
+  /* background: -webkit-linear-gradient(#eee, yellow);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
 }
 
 @keyframes App-logo-spin {

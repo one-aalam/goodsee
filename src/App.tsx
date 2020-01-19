@@ -1,20 +1,19 @@
 import React from 'react';
-// import logo from './logo.svg';
+import { Router } from "@reach/router";
 import './App.css';
 
-import { GlobalContext, initialValues } from './contexts/GlobalContext';
+import { HomePage } from './components/HomePage';
+import { MovieDetailPage } from './components/MovieDetailPage';
 
-import { Header } from './components/Header';
-import { MovieCardList } from './components/MovieCardList';
 
 const App: React.FC = () => {
   return (
-    <GlobalContext.Provider value={initialValues}>
-    <div className="App">
-      <Header title="GOODSEE" />
-      <MovieCardList/>
-    </div>
-    </GlobalContext.Provider>
+    <>
+      <Router>
+        <HomePage path="/" />
+        <MovieDetailPage path="movie/:id" />
+      </Router>
+    </>
   );
 }
 
