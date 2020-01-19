@@ -4,6 +4,7 @@ import './App.css';
 
 import { HomePage } from './components/HomePage';
 import { MovieDetailPage } from './components/MovieDetailPage';
+import { MovieDiscoverPage } from './components/MovieDiscoverPage';
 
 
 const App: React.FC = () => {
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <Router>
         <HomePage path="/" />
         <MovieDetailPage path="movie/:id" />
+        <MovieDiscoverPage path="discover" />
       </Router>
     </>
   );
