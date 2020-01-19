@@ -12,19 +12,22 @@ export const useFetch = (url: string, options: any) => {
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
+        const abortController = new AbortController();
         const fetchData = async () => {
             try {
-              const res = await fetch(url, options);
+              const res = await fetch(url, { signal: abortController.signal });
               const json = await res.json();
               setResponse(json);
-              setLoading(false)
             } catch (error) {
-               setError(error);
-               setLoading(false)
+              setError(error);
             }
+            setLoading(false);
         };
         fetchData();
-    }, [ url, options ]);
+        return () => {
+            abortController.abort();
+        };
+    }, [ url ]);
 
     return {
         error,
@@ -33,4 +36,4 @@ export const useFetch = (url: string, options: any) => {
     };
 };
 
-// https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
+//@TODO Improve https://blog.logrocket.com/frustrations-with-react-hooks/
