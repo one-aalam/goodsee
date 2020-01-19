@@ -1,3 +1,5 @@
+
+import { stringify } from 'query-string'
 import { TMDB_API_KEY as API_KEY } from '../secrets';
 import { useFetch, IFetchResponse } from './useFetch';
 
@@ -68,14 +70,30 @@ export interface ITMDBDiscovery {
     results: ITMDBMovie[]
 }
 
+type queryParams = {
+    primary_release_year?: number | string | string[];
+    api_key?: string;
+}
+
+const defaultQueryParams: queryParams = {
+    primary_release_year: 2020
+}
+
+const requiredQueryParams: queryParams = {
+    api_key: API_KEY
+}
+
 export const useMovieDetail = (id?: string): IFetchResponse => useFetch(`${BASE_URI}/movie/${id}?api_key=${API_KEY}`, {});
-export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_date.gte=2019-09-15&api_key=${API_KEY}`, {});
+export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_year=2020&api_key=${API_KEY}`, {});
+export const useMovieDiscover = (params: queryParams = defaultQueryParams): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?${stringify({ ...requiredQueryParams, ...params })}`, {});
+
 
 
 
 
 
 // &primary_release_date.lte=2014-10-22
+// primary_release_date.gte=2019-09-15
 // What movies are in theatres?
 
 // URL: /discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22
