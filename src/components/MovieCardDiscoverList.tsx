@@ -5,8 +5,8 @@ import { ITMDBMovie } from '../hooks/tmdb';
 
 type MovieCardProps = {
     movies: ITMDBMovie[];
-    favorites: number[];
-    watched: number[];
+    favorites?: number[];
+    watched?: number[];
 }
 
 export const MovieCardDiscoverList :React.FC<MovieCardProps> = ({ movies, children }) => {
