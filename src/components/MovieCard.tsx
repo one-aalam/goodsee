@@ -6,14 +6,22 @@ import { ITMDBMovie, POSTER_PATH } from '../hooks/tmdb';
 
 type MovieCardProps = {
     movie: ITMDBMovie;
+    isFavorite?: boolean;
+    isWatched?: boolean;
 }
 
-export const MovieCard :React.FC<MovieCardProps> = ({ movie, children }) => {
+export const MovieCard :React.FC<MovieCardProps> = ({ movie, isFavorite, isWatched }) => {
     return (
         <StyledMovieCard>
             <Link to={`movie/${movie.id}`}>
                 <img alt={movie.title} src={`${POSTER_PATH}${movie.poster_path}`} />
            </Link>
+            {
+                isFavorite && <span>favorite</span>
+            }
+            {
+                isWatched && <span>watched</span>
+            }
         </StyledMovieCard>
     )
 }
