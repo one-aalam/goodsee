@@ -72,6 +72,12 @@ export interface ITMDBDiscovery {
 
 type queryParams = {
     primary_release_year?: number | string | string[];
+    with_genres?: number | string | string[];
+    with_people?: number | string | string[];
+    with_cast?: number | string | string[];
+    certification_country?: number | string | string[];
+    certification?: string;
+    sort_by?: string;
     api_key?: string;
 }
 
@@ -89,13 +95,6 @@ export const useMovieDetail = (id?: string): IFetchResponse => useFetch(`${BASE_
 export const useMoviePopular = (params?: any): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?primary_release_year=2020&api_key=${API_KEY}`, {});
 export const useMovieDiscover = (params: queryParams = defaultQueryParams): IFetchResponse => useFetch(`${BASE_URI}/discover/movie?${stringify({ ...requiredQueryParams, ...params })}`, {});
 
-
-
-
-
-
-// &primary_release_date.lte=2014-10-22
-// primary_release_date.gte=2019-09-15
 // What movies are in theatres?
 
 // URL: /discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22
