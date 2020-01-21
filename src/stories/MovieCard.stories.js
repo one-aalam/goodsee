@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+//import { action } from '@storybook/addon-actions';
 
 import { MovieCard } from '../components/MovieCard';
 
@@ -8,9 +8,9 @@ export default {
     title: 'MovieCard',
     // Our exports that end in "Data" are not stories.
     excludeStories: /.*Data$/,
-  };
+};
 
-export const MovieCardData =  {
+export const movieCardData =  {
       "popularity": 408.15,
       "vote_count": 130,
       "video": false,
@@ -28,8 +28,12 @@ export const MovieCardData =  {
 }
 
 
-  export const Default = () => {
-    return <MovieCard movie={MovieCardData} />;
+export const Default = () => {
+    return <MovieCard movie={movieCardData} />;
   };
 
-  export const Favorited = () => <MovieCard movie={{ ...MovieCardData, isFavorite: true }} />;
+export const Favorited = () => <MovieCard movie={{ ...movieCardData, isFavorite: true }} isFavorite={true} />;
+
+export const Watched = () => <MovieCard movie={{ ...movieCardData, isFavorite: true }} isWatched={true} />;
+
+export const FavoriteAndWatched = () => <MovieCard movie={{ ...movieCardData, isFavorite: true }} isFavorite={true} isWatched={true} />;
