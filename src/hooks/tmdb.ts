@@ -77,6 +77,7 @@ type queryParams = {
     with_cast?: number | string | string[];
     certification_country?: number | string | string[];
     certification?: string;
+    page?: number | string | string[];
     sort_by?: string;
     api_key?: string;
 }

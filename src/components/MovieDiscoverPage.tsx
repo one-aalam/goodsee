@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { RouteComponentProps, WindowLocation, navigate } from "@reach/router";
-import { stringify } from 'query-string';
+import styled from 'styled-components';
+import { stringify, parse } from 'query-string';
 import { useQueryParams } from '../hooks/useQueryParams';
 import { useMovieDiscover } from '../hooks/tmdb';
 import { MovieCardDiscoverList } from './MovieCardDiscoverList';
 
 
 export const MovieDiscoverPage: React.FC<RouteComponentProps> = ({ location }) => {
-    const { year } = useQueryParams(location as WindowLocation);
-    const { error, loading, response } = useMovieDiscover({ primary_release_year: year ? year : 2020 });
+    const queryParams = useQueryParams(location as WindowLocation);
+    const navigateByQueryParams = (param: any) => navigate(`/discover?${stringify({ ...queryParams, ...param })}`);
+    const { year, page } = queryParams;
+    const { error, loading, response } = useMovieDiscover({
+        primary_release_year: year ? year : 2020,
+        page: page ? page : 1
+    });
+    const [ yearStart, yearNow ] = [ 1980, 2020 ];
+    const years = useMemo(() => [...Array(yearNow - yearStart)].map((_,i)=> yearStart + i), [yearNow, yearStart]);
+
 
     if (loading) {
         return <p>Loading...</p>;
@@ -22,15 +31,34 @@ export const MovieDiscoverPage: React.FC<RouteComponentProps> = ({ location }) =
         return <p>No records found</p>;
     }
 
+    const options = [];
+    for (let i = 1; i <= response.total_pages; i++) {
+        options.push(<option value={i}>{i}</option>);
+    }
+
     return (
-        <>
-            <select onChange={ e => {
-                navigate(`/discover?${stringify({ year: e.target.value })}`)
-            }}>
-                <option value={2020}>2020</option>
-                <option value={2019}>2019</option>
-            </select>
+        <MovieDiscoverPageGrid>
+            <div>
+                <select onChange={ e => {
+                    navigateByQueryParams({ year: e.target.value });
+                }}>
+                    {
+                        years.map(year => <option value={year}>{year}</option>)
+                    }
+                </select>
+                <select onChange={ e => {
+                    navigateByQueryParams({ page: e.target.value });
+                }}>
+                    {options}
+                </select>
+            </div>
             <MovieCardDiscoverList movies={response?.results} />
-        </>
+        </MovieDiscoverPageGrid>
     )
 }
+
+const MovieDiscoverPageGrid = styled.div`
+    display: grid;
+    padding: 2rem;
+    grid-template-columns: 300px 1fr;
+`;
